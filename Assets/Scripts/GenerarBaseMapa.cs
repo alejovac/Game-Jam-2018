@@ -7,7 +7,8 @@ public class GenerarBaseMapa : NetworkBehaviour {
     public int ancho = 16;
     public int alto = 9;
     
-    public SyncList<Celda> plano;
+    public Celda[,] plano;
+    public Sprite[,] imagenes;
 
     public int yEntrada = -1;
     public int ySalida = -1;
@@ -18,47 +19,42 @@ public class GenerarBaseMapa : NetworkBehaviour {
 
     public GameObject tubo;
 
+    public SetImagenes imagenesServer;
+    public SetImagenes imagenesCliente;
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        if (!isServer)
-            return;
+        if (isServer)
+        {
+            rand = new System.Random();
+            plano = new Celda[ancho, alto];
+            imagenes = new Sprite[ancho, alto];
+            ClearPlano(Celda.vacia);
 
-        rand = new System.Random();
-        plano = new SyncListStruct<Celda>();
-        CmdClearPlano(Celda.vacia);
-        
-        GenerarCaminoPlano();
-        GenerarCaminoPlano();
-        LimpiarCaminoPlano();
+            GenerarCaminoPlano();
+            //GenerarCaminoPlano();
+            LimpiarCaminoPlano();
+            CalcularImagenes(imagenesServer);
 
-        CmdInstanciarPlano();   
-        Debug.Log("show alsdfsa;jfadj;lkfsdaj;");   
+            InstanciarPlano();
+        }
     }
-
-    private int Posicion(int xx, int yy)
-    {
-        if (xx >= ancho)
-            throw new System.IndexOutOfRangeException("Index: [" + xx + "," + yy + "]");
-
-        return xx + yy * alto;
-    }
-
-    [Command]
-    private void CmdClearPlano(Celda val)
+    
+    private void ClearPlano(Celda val)
     {
         for (int xx = 0; xx < ancho; xx++)
             for (int yy = 0; yy < alto; yy++)
-                plano.Add(Celda.vacia);
+                plano[xx,yy] = Celda.vacia;
     }
-
+    
     private void GenerarCaminoPlano()
     {
         if (yEntrada < 0)
             yEntrada = rand.Next((int)(alto/2))*2;
 
-        plano[Posicion(0, yEntrada)] = Celda.tubo;
-        plano[Posicion(1, yEntrada)] = Celda.tubo;
+        plano[0, yEntrada] = Celda.tubo;
+        plano[1, yEntrada] = Celda.tubo;
 
         int xx = 1;
         int yy = yEntrada;
@@ -78,11 +74,11 @@ public class GenerarBaseMapa : NetworkBehaviour {
                 xx = Mathf.Clamp(xx + despX, 1, ancho - 1);
                 yy = Mathf.Clamp(yy + despY, 0, alto - 1);
 
-                plano[Posicion(xx, yy)] = Celda.tubo;
+                plano[xx, yy] = Celda.tubo;
             }
         }
     }
-
+    
     private void LimpiarCaminoPlano()
     {
         bool limpio = false;
@@ -93,7 +89,7 @@ public class GenerarBaseMapa : NetworkBehaviour {
             {
                 for (int yy = 0; yy < alto; yy++)
                 {
-                    if (plano[Posicion(xx, yy)] == Celda.tubo)
+                    if (plano[xx, yy] == Celda.tubo)
                     {
                         int tubosAdyacentes = 0;
                         for (float direccion = 0; direccion < 1.8f * Mathf.PI; direccion += Mathf.PI / 2f)
@@ -106,7 +102,7 @@ public class GenerarBaseMapa : NetworkBehaviour {
 
                             if (xValido && yValido)
                             {
-                                if (plano[Posicion(xx + despX, yy + despY)] == Celda.tubo)
+                                if (plano[xx + despX, yy + despY] == Celda.tubo)
                                     tubosAdyacentes += 1;
                             }
                         }
@@ -114,7 +110,7 @@ public class GenerarBaseMapa : NetworkBehaviour {
                         if (tubosAdyacentes == 1)
                         {
                             limpio = false;
-                            plano[Posicion(xx, yy)] = Celda.vacia;
+                            plano[xx, yy] = Celda.vacia;
                         }
                     }
                 }
@@ -122,14 +118,61 @@ public class GenerarBaseMapa : NetworkBehaviour {
         }
     }
 
-    [Command]
-    private void CmdInstanciarPlano()
+    private void CalcularImagenes(SetImagenes setImagenes)
     {
-        Debug.Log("show alsdfsa;jfadj;lkfsdaj;");
         for (int xx = 0; xx < ancho; xx++)
+        {
             for (int yy = 0; yy < alto; yy++)
-                if (plano[Posicion(xx, yy)] == Celda.tubo)
-                    Instantiate(tubo, new Vector3(xoffset + xx, yoffset + yy, -yy / 10), Quaternion.identity);
+            {
+                if (plano[xx, yy] == Celda.tubo)
+                {
+                    bool tuboIzq = (xx - 1) > 0;
+                    bool tuboAba = (yy - 1) > 0;
+                    bool tuboArr = (yy + 1) < alto - 1;
+                    bool tuboDer = (xx + 1) < ancho - 1;
+
+                    if (tuboIzq) tuboIzq = plano[xx - 1, yy] == Celda.tubo;
+                    if (tuboDer) tuboDer = plano[xx + 1, yy] == Celda.tubo;
+                    if (tuboArr) tuboArr = plano[xx, yy + 1] == Celda.tubo;
+                    if (tuboAba) tuboAba = plano[xx, yy - 1] == Celda.tubo;
+
+                    int coneccionCodigo = (tuboDer ? 1000 : 0) + (tuboArr ? 100 : 0) + (tuboIzq ? 10 : 0) + (tuboAba ? 1 : 0);
+                    switch (coneccionCodigo)
+                    {
+                        case 1111: imagenes[xx,yy] = setImagenes.tuboTile_cruz; break;
+
+                        case 1110: imagenes[xx, yy] = setImagenes.tuboTile_formaT_ArrDerIzq; break;
+                        case 1101: imagenes[xx, yy] = setImagenes.tuboTile_formaT_DerAbaArr; break;
+                        case 1011: imagenes[xx, yy] = setImagenes.tuboTile_formaT_AbaDerIzq; break;
+                        case 0111: imagenes[xx, yy] = setImagenes.tuboTile_formaT_IqzAbaArr; break;
+
+                        case 0011: imagenes[xx, yy] = setImagenes.tuboTile_codo_AbaIzq; break;
+                        case 1001: imagenes[xx, yy] = setImagenes.tuboTile_codo_AbaDer; break;
+                        case 0110: imagenes[xx, yy] = setImagenes.tuboTile_codo_ArrIzq; break;
+                        case 1100: imagenes[xx, yy] = setImagenes.tuboTile_codo_ArrDer; break;
+
+                        case 1010: imagenes[xx, yy] = setImagenes.tuboTile_linea_hori; break;
+                        case 0101: imagenes[xx, yy] = setImagenes.tuboTile_linea_vert; break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void InstanciarPlano()
+    {
+        for (int xx = 0; xx < ancho; xx++)
+        {
+            for (int yy = 0; yy < alto; yy++)
+            {
+                if (plano[xx, yy] == Celda.tubo)
+                {
+                    GameObject tuboIns = Instantiate(tubo, new Vector3(xoffset + xx, yoffset + yy, -.15f), Quaternion.identity);
+                    tuboIns.GetComponentInChildren<SpriteRenderer>().sprite = imagenes[xx, yy];
+                    NetworkServer.Spawn(tuboIns);
+                }
+            }
+        }
     }
     
 }

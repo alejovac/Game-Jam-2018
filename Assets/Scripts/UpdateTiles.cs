@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateTiles : MonoBehaviour {
+public class UpdateTiles : MonoBehaviour
+{
     public Sprite crossSprite;
 
     public Sprite TspriteULR;
@@ -29,8 +30,13 @@ public class UpdateTiles : MonoBehaviour {
     bool prevTouchDown = false;
     bool prevTouchLeft = false;
     bool prevTouchRight = false;
-    
-	void Update () {
+
+    private void Start()
+    {
+        Update();
+    }
+
+    void Update () {
         bool cambiaUp    = conectionUp   .conectado != prevTouchUp   ;
         bool cambiaDown  = conectionDown .conectado != prevTouchDown ;
         bool cambiaLeft  = conectionLeft .conectado != prevTouchLeft ;
@@ -61,7 +67,7 @@ public class UpdateTiles : MonoBehaviour {
                 case 1010: imagen.sprite = lineSpriteH; break;
                 case 0101: imagen.sprite = lineSpriteV; break;
             }
-
+            Destroy(this);
         }
-	}
+    }
 }

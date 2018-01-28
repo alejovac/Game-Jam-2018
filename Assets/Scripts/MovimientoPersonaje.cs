@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MovimientoPersonaje : MonoBehaviour {
     public float speed = 0.10f;
+    public bool quieto;
     public Vector2 tamCelda;
 
     public Vector2 bordeIzquierdaAbajo;
     public Vector2 bordeDerechaArriba;
 
-    private Vector2 posicionDestino;
-
-
+    public Vector2 posicionDestino;
+    
     void Start()
     {
         posicionDestino = new Vector2(0, 0.5f);
@@ -20,7 +20,8 @@ public class MovimientoPersonaje : MonoBehaviour {
 	void Update ()
     {
         Vector2 distanciaDestino = posicionDestino - new Vector2(transform.position.x, transform.position.y);
-        if (distanciaDestino.magnitude < 0.05f)
+        quieto = distanciaDestino.magnitude < 0.05f;
+        if (quieto)
         {
             float xAxis = (Input.GetKeyDown("right") ? 1 : 0) - (Input.GetKeyDown("left") ? 1 : 0);
             float yAxis = (Input.GetKeyDown("up") ? 1 : 0) - (Input.GetKeyDown("down") ? 1 : 0);
