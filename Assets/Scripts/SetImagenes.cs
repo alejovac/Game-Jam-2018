@@ -20,4 +20,9 @@ public class SetImagenes : MonoBehaviour {
 
     public Sprite tuboTile_terminal_Izq;
     public Sprite tuboTile_terminal_Der;
+
+    public Sprite pisoTile_normal;
+    public Sprite pisoTile_1;
+    public Sprite pisoTile_2;
+    public Sprite pisoTile_3;
 }
