@@ -46,17 +46,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Assets\Menu\Scripts\ActiveStateToggler.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\ApplicationManager.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\ChangeColor.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\DragMe.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\DragPanel.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\DropMe.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\PanelManager.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\ResizePanel.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\ScrollDetailTexture.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\ShowSliderValue.cs" />
-     <Compile Include="Assets\Assets\Menu\Scripts\TiltWindow.cs" />
+     <Compile Include="Assets\ColaScript.cs" />
+     <Compile Include="Assets\ElegirTilePiso.cs" />
+     <Compile Include="Assets\Menu\Scripts\ActiveStateToggler.cs" />
+     <Compile Include="Assets\Menu\Scripts\ApplicationManager.cs" />
+     <Compile Include="Assets\Menu\Scripts\ChangeColor.cs" />
+     <Compile Include="Assets\Menu\Scripts\DragMe.cs" />
+     <Compile Include="Assets\Menu\Scripts\DragPanel.cs" />
+     <Compile Include="Assets\Menu\Scripts\DropMe.cs" />
+     <Compile Include="Assets\Menu\Scripts\PanelManager.cs" />
+     <Compile Include="Assets\Menu\Scripts\ResizePanel.cs" />
+     <Compile Include="Assets\Menu\Scripts\ScrollDetailTexture.cs" />
+     <Compile Include="Assets\Menu\Scripts\ShowSliderValue.cs" />
+     <Compile Include="Assets\Menu\Scripts\TiltWindow.cs" />
      <Compile Include="Assets\Scripts\ConeccionTubo.cs" />
      <Compile Include="Assets\Scripts\DisconnectOnClick.cs" />
      <Compile Include="Assets\Scripts\DisconnectOnEscape.cs" />
