@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{93D4E294-AFF0-7901-EB4C-1FAF4AFDA880}</ProjectGuid>
+    <ProjectGuid>{55C9B23D-5E79-41DC-967D-460E90CC06B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -89,7 +89,7 @@
     <Compile Include="Assets\PegarsePersonaje.cs" />
     <Compile Include="Assets\ScriptTemp.cs" />
     <Compile Include="Assets\Scripts\ConeccionTubo.cs" />
-    <Compile Include="Assets\Scripts\DisconnectOnClick.cs" />
+    <Compile Include="Assets\Scripts\DisconnectOnEscape.cs" />
     <Compile Include="Assets\Scripts\GenerarBaseMapa.cs" />
     <Compile Include="Assets\Scripts\HostOnClick.cs" />
     <Compile Include="Assets\Scripts\JoinOnClick.cs" />
