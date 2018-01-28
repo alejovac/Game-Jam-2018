@@ -8,6 +8,6 @@ public class SetupLocalPlayer : NetworkBehaviour {
 	void Start ()
     {
         if (isLocalPlayer)
-            GetComponent<MovimientoPersonaje>().enabled = true;
+            GetComponent<SpriteRenderer>().enabled = true;
 	}
 }
