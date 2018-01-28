@@ -1,73 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class UpdateTiles : MonoBehaviour
+public class UpdateTiles : NetworkBehaviour
 {
-    public Sprite crossSprite;
-
-    public Sprite TspriteULR;
-    public Sprite TspriteDLR;
-    public Sprite TspriteUDR;
-    public Sprite TspriteUDL;
-
-    public Sprite curvedSpriteUL;
-    public Sprite curvedSpriteUR;
-    public Sprite curvedSpriteDL;
-    public Sprite curvedSpriteDR;
-
-    public Sprite lineSpriteH;
-    public Sprite lineSpriteV;
-
-    public ConeccionTubo conectionUp;
-    public ConeccionTubo conectionDown;
-    public ConeccionTubo conectionLeft;
-    public ConeccionTubo conectionRight;
-
+    [SyncVar]
+    public int codigoImagen = 0;
+    public bool actualizo = false;
     public SpriteRenderer imagen;
+    public SetImagenes imagenesServer;
+    public SetImagenes imagenesClient;
 
     bool prevTouchUp = false;
     bool prevTouchDown = false;
     bool prevTouchLeft = false;
     bool prevTouchRight = false;
-
-    private void Start()
-    {
-        Update();
-    }
-
+    
     void Update () {
-        bool cambiaUp    = conectionUp   .conectado != prevTouchUp   ;
-        bool cambiaDown  = conectionDown .conectado != prevTouchDown ;
-        bool cambiaLeft  = conectionLeft .conectado != prevTouchLeft ;
-        bool cambiaRight = conectionRight.conectado != prevTouchRight;
+        if (codigoImagen != 0 && !actualizo) {
+            actualizo = true;
+            SetImagenes setImagenes = isServer ? imagenesServer : imagenesClient;
 
-        if (cambiaUp || cambiaDown || cambiaLeft || cambiaRight)
-        {
-            prevTouchUp    = conectionUp   .conectado;
-            prevTouchDown  = conectionDown .conectado;
-            prevTouchLeft  = conectionLeft .conectado;
-            prevTouchRight = conectionRight.conectado;
-            
-            int coneccionCodigo = (prevTouchRight ? 1000 : 0) + (prevTouchUp ? 100 : 0) + (prevTouchLeft ? 10 : 0) + (prevTouchDown ? 1 : 0);
-            switch (coneccionCodigo)
+            switch (codigoImagen)
             {
-                case 1111: imagen.sprite = crossSprite; break;
+                case 1111: imagen.sprite = imagenesServer.tuboTile_cruz; break;
 
-                case 1110: imagen.sprite = TspriteULR; break;
-                case 1101: imagen.sprite = TspriteUDR; break;
-                case 1011: imagen.sprite = TspriteDLR; break;
-                case 0111: imagen.sprite = TspriteUDL; break;
+                case 1110: imagen.sprite = imagenesServer.tuboTile_formaT_ArrDerIzq; break;
+                case 1101: imagen.sprite = imagenesServer.tuboTile_formaT_DerAbaArr; break;
+                case 1011: imagen.sprite = imagenesServer.tuboTile_formaT_AbaDerIzq; break;
+                case 0111: imagen.sprite = imagenesServer.tuboTile_formaT_IqzAbaArr; break;
 
-                case 0011: imagen.sprite = curvedSpriteDL; break;
-                case 1001: imagen.sprite = curvedSpriteDR; break;
-                case 0110: imagen.sprite = curvedSpriteUL; break;
-                case 1100: imagen.sprite = curvedSpriteUR; break;
+                case 0011: imagen.sprite = imagenesServer.tuboTile_codo_AbaIzq; break;
+                case 1001: imagen.sprite = imagenesServer.tuboTile_codo_AbaDer; break;
+                case 0110: imagen.sprite = imagenesServer.tuboTile_codo_ArrIzq; break;
+                case 1100: imagen.sprite = imagenesServer.tuboTile_codo_ArrDer; break;
 
-                case 1010: imagen.sprite = lineSpriteH; break;
-                case 0101: imagen.sprite = lineSpriteV; break;
+                case 1010: imagen.sprite = imagenesServer.tuboTile_linea_hori; break;
+                case 0101: imagen.sprite = imagenesServer.tuboTile_linea_vert; break;
+
+                case 1000: imagen.sprite = imagenesServer.tuboTile_terminal_Izq; break;
+                case 0010: imagen.sprite = imagenesServer.tuboTile_terminal_Der; break;
             }
-            Destroy(this);
         }
     }
 }
