@@ -9,6 +9,7 @@ public class GenerarBaseMapa : NetworkBehaviour {
     
     public Celda[,] plano;
     public Sprite[,] imagenes;
+    public int[,] imagenCodigo;
 
     public int yEntrada = -1;
     public int ySalida = -1;
@@ -30,6 +31,7 @@ public class GenerarBaseMapa : NetworkBehaviour {
             rand = new System.Random();
             plano = new Celda[ancho, alto];
             imagenes = new Sprite[ancho, alto];
+            imagenCodigo = new int[ancho, alto];
             ClearPlano(Celda.vacia);
 
             GenerarCaminoPlano();
@@ -138,26 +140,27 @@ public class GenerarBaseMapa : NetworkBehaviour {
                     if (tuboAba) tuboAba = plano[xx, yy - 1] == Celda.tubo;
 
                     int coneccionCodigo = (tuboDer ? 1000 : 0) + (tuboArr ? 100 : 0) + (tuboIzq ? 10 : 0) + (tuboAba ? 1 : 0);
-                    switch (coneccionCodigo)
-                    {
-                        case 1111: imagenes[xx,yy] = setImagenes.tuboTile_cruz; break;
+                    imagenCodigo[xx, yy] = coneccionCodigo;
+                    //switch (coneccionCodigo)
+                    //{
+                    //    case 1111: imagenes[xx,yy] = setImagenes.tuboTile_cruz; break;
 
-                        case 1110: imagenes[xx, yy] = setImagenes.tuboTile_formaT_ArrDerIzq; break;
-                        case 1101: imagenes[xx, yy] = setImagenes.tuboTile_formaT_DerAbaArr; break;
-                        case 1011: imagenes[xx, yy] = setImagenes.tuboTile_formaT_AbaDerIzq; break;
-                        case 0111: imagenes[xx, yy] = setImagenes.tuboTile_formaT_IqzAbaArr; break;
+                    //    case 1110: imagenes[xx, yy] = setImagenes.tuboTile_formaT_ArrDerIzq; break;
+                    //    case 1101: imagenes[xx, yy] = setImagenes.tuboTile_formaT_DerAbaArr; break;
+                    //    case 1011: imagenes[xx, yy] = setImagenes.tuboTile_formaT_AbaDerIzq; break;
+                    //    case 0111: imagenes[xx, yy] = setImagenes.tuboTile_formaT_IqzAbaArr; break;
 
-                        case 0011: imagenes[xx, yy] = setImagenes.tuboTile_codo_AbaIzq; break;
-                        case 1001: imagenes[xx, yy] = setImagenes.tuboTile_codo_AbaDer; break;
-                        case 0110: imagenes[xx, yy] = setImagenes.tuboTile_codo_ArrIzq; break;
-                        case 1100: imagenes[xx, yy] = setImagenes.tuboTile_codo_ArrDer; break;
+                    //    case 0011: imagenes[xx, yy] = setImagenes.tuboTile_codo_AbaIzq; break;
+                    //    case 1001: imagenes[xx, yy] = setImagenes.tuboTile_codo_AbaDer; break;
+                    //    case 0110: imagenes[xx, yy] = setImagenes.tuboTile_codo_ArrIzq; break;
+                    //    case 1100: imagenes[xx, yy] = setImagenes.tuboTile_codo_ArrDer; break;
 
-                        case 1010: imagenes[xx, yy] = setImagenes.tuboTile_linea_hori; break;
-                        case 0101: imagenes[xx, yy] = setImagenes.tuboTile_linea_vert; break;
+                    //    case 1010: imagenes[xx, yy] = setImagenes.tuboTile_linea_hori; break;
+                    //    case 0101: imagenes[xx, yy] = setImagenes.tuboTile_linea_vert; break;
 
-                        case 1000: imagenes[xx, yy] = setImagenes.tuboTile_terminal_Izq; break;
-                        case 0010: imagenes[xx, yy] = setImagenes.tuboTile_terminal_Der; break;
-                    }
+                    //    case 1000: imagenes[xx, yy] = setImagenes.tuboTile_terminal_Izq; break;
+                    //    case 0010: imagenes[xx, yy] = setImagenes.tuboTile_terminal_Der; break;
+                    //}
                 }
             }
         }
@@ -180,9 +183,11 @@ public class GenerarBaseMapa : NetworkBehaviour {
                 {
                     plano[sigX, sigY] = Celda.tuboSuelto;
                     imagenes[sigX, sigY] = imagenes[xx, yy];
+                    imagenCodigo[sigX, sigY] = imagenCodigo[xx, yy];
 
                     plano[xx, yy] = Celda.vacia;
                     imagenes[xx, yy] = null;
+                    imagenCodigo[xx, yy] = 0;
                     cantidad--;
                 }
             }
@@ -201,7 +206,9 @@ public class GenerarBaseMapa : NetworkBehaviour {
                 {
                     GameObject tuboIns = Instantiate(tubo, new Vector3(xoffset + xx, yoffset + yy, -.15f), Quaternion.identity);
 
-                    tuboIns.GetComponentInChildren<SpriteRenderer>().sprite = imagenes[xx, yy];
+                    //tuboIns.GetComponentInChildren<SpriteRenderer>().sprite = imagenes[xx, yy];
+                    tuboIns.GetComponent<UpdateTiles>().codigoImagen = imagenCodigo[xx, yy];
+
                     if (plano[xx, yy] == Celda.tubo)
                         Destroy(tuboIns.GetComponent<PegarsePersonaje>());
 
