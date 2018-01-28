@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "game-jam-2018", "game-jam-2018.csproj", "{93D4E294-AFF0-7901-EB4C-1FAF4AFDA880}"
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-Jam-2018", "Game-Jam-2018.csproj", "{55C9B23D-5E79-41DC-967D-460E90CC06B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93D4E294-AFF0-7901-EB4C-1FAF4AFDA880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93D4E294-AFF0-7901-EB4C-1FAF4AFDA880}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93D4E294-AFF0-7901-EB4C-1FAF4AFDA880}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93D4E294-AFF0-7901-EB4C-1FAF4AFDA880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C9B23D-5E79-41DC-967D-460E90CC06B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C9B23D-5E79-41DC-967D-460E90CC06B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C9B23D-5E79-41DC-967D-460E90CC06B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C9B23D-5E79-41DC-967D-460E90CC06B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

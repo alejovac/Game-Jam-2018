@@ -60,7 +60,7 @@
      <Compile Include="Assets\PegarsePersonaje.cs" />
      <Compile Include="Assets\ScriptTemp.cs" />
      <Compile Include="Assets\Scripts\ConeccionTubo.cs" />
-     <Compile Include="Assets\Scripts\DisconnectOnClick.cs" />
+     <Compile Include="Assets\Scripts\DisconnectOnEscape.cs" />
      <Compile Include="Assets\Scripts\GenerarBaseMapa.cs" />
      <Compile Include="Assets\Scripts\HostOnClick.cs" />
      <Compile Include="Assets\Scripts\JoinOnClick.cs" />
