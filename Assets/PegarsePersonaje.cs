@@ -24,7 +24,7 @@ public class PegarsePersonaje : MonoBehaviour {
                 Vector2 pjDestino = coneccion.personajeAdjacente.posicionDestino;
                 Vector2 pjPosicion = coneccion.personajeAdjacente.transform.position;
 
-                movimiento += (pjDestino - pjPosicion) * coneccion.personajeAdjacente.speed;
+                movimiento += pjPosicion;
             }
         }
 
@@ -32,17 +32,20 @@ public class PegarsePersonaje : MonoBehaviour {
         {
             if (playerMoviendo > 1)
             {
-                transform.Translate(movimiento / 2);
+                transform.position = movimiento / 2;
             }
-            else
-            {
-                Vector3 pos = transform.position;
-                pos.x = Mathf.Round(pos.x);
-                pos.y = Mathf.Round(pos.y + .5f) - 0.5f;
-                pos.z = Mathf.Round(pos.z);
-
-                transform.position = pos;
-            }
+            else Alinearse();
         }
-    } 
+        else Alinearse();
+    }
+
+    private void Alinearse()
+    {
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Round(pos.x);
+        pos.y = Mathf.Round(pos.y + .5f) - 0.5f;
+        pos.z = Mathf.Round(pos.z);
+
+        transform.position = pos;
+    }
 }

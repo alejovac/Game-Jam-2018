@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\SetupLocalPlayer.cs" />
     <Compile Include="Assets\Scripts\UpdateTiles.cs" />
     <Compile Include="Assets\SetImagenes.cs" />
+    <Compile Include="Assets\Sonidos.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
