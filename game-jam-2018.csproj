@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ColaScript.cs" />
     <Compile Include="Assets\ElegirTilePiso.cs" />
     <Compile Include="Assets\Menu\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Menu\Scripts\ApplicationManager.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Assets\Scripts\SetupLocalPlayer.cs" />
     <Compile Include="Assets\Scripts\Sonidos.cs" />
     <Compile Include="Assets\Scripts\UpdateTiles.cs" />
+    <Compile Include="Assets\SeleccionadorDeSonido.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

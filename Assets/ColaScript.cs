@@ -10,11 +10,10 @@ public class ColaScript : NetworkBehaviour {
 	[SyncVar]
 	public int codigo = 0;
 	AudioClip nuevoSonido = null;
+    float volumen = 1f;
 
-	//lista
-
-	// Use this for initialization
-	void Update () {
+    // Use this for initialization
+    void Update () {
 		/*Debug.Log (codigo);
 		switch (codigo) {
 			case 201: nuevoSonido = DeepsSonidos.perdida1; break;
@@ -84,7 +83,7 @@ public class ColaScript : NetworkBehaviour {
 		case 114: nuevoSonido = LubbSonidos.vamos; break;
 		}
 		if(codigo != 0){
-			AudioSource.PlayClipAtPoint (nuevoSonido, transform.position);
+			AudioSource.PlayClipAtPoint (nuevoSonido, transform.position, volumen);
 		}
 	}
 
