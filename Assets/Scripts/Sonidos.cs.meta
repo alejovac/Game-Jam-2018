@@ -1,10 +1,24 @@
 fileFormatVersion: 2
 guid: ef6feb95a49c3dc49ba9d84f2396eebb
-timeCreated: 1517106090
+timeCreated: 1517144140
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - perdida1: {instanceID: 0}
+  - perdida2: {instanceID: 0}
+  - perdida3: {instanceID: 0}
+  - alto: {fileID: 8300000, guid: 445a51448f678bc4b88201433c3a56e1, type: 3}
+  - cuidado: {fileID: 8300000, guid: e5e4cfb4fc9dbb14485205221210038c, type: 3}
+  - retrocede: {instanceID: 0}
+  - aqui: {instanceID: 0}
+  - unodostres: {instanceID: 0}
+  - genial: {instanceID: 0}
+  - ven: {instanceID: 0}
+  - ahora: {instanceID: 0}
+  - porPoco: {instanceID: 0}
+  - tututu: {instanceID: 0}
+  - vamos: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

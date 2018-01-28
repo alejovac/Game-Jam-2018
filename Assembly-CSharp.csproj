@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AA32F7C8-F8CD-8D9F-6D41-0267B1851F1C}</ProjectGuid>
+    <ProjectGuid>{00E9B5EE-0F59-CE13-2A47-746694A2141C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -39,24 +39,24 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Programas/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Programas/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Menu\Scripts\ActiveStateToggler.cs" />
-     <Compile Include="Assets\Menu\Scripts\ApplicationManager.cs" />
-     <Compile Include="Assets\Menu\Scripts\ChangeColor.cs" />
-     <Compile Include="Assets\Menu\Scripts\DragMe.cs" />
-     <Compile Include="Assets\Menu\Scripts\DragPanel.cs" />
-     <Compile Include="Assets\Menu\Scripts\DropMe.cs" />
-     <Compile Include="Assets\Menu\Scripts\PanelManager.cs" />
-     <Compile Include="Assets\Menu\Scripts\ResizePanel.cs" />
-     <Compile Include="Assets\Menu\Scripts\ScrollDetailTexture.cs" />
-     <Compile Include="Assets\Menu\Scripts\ShowSliderValue.cs" />
-     <Compile Include="Assets\Menu\Scripts\TiltWindow.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\ActiveStateToggler.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\ApplicationManager.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\ChangeColor.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\DragMe.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\DragPanel.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\DropMe.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\PanelManager.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\ResizePanel.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\ScrollDetailTexture.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\ShowSliderValue.cs" />
+     <Compile Include="Assets\Assets\Menu\Scripts\TiltWindow.cs" />
      <Compile Include="Assets\Scripts\ConeccionTubo.cs" />
      <Compile Include="Assets\Scripts\DisconnectOnClick.cs" />
      <Compile Include="Assets\Scripts\DisconnectOnEscape.cs" />
@@ -74,23 +74,24 @@
      <Compile Include="Assets\Scripts\SetupLocalPlayer.cs" />
      <Compile Include="Assets\Scripts\Sonidos.cs" />
      <Compile Include="Assets\Scripts\UpdateTiles.cs" />
+     <Compile Include="Assets\SeleccionadorDeSonido.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.PlaymodeTestsRunner">
- <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
- <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
