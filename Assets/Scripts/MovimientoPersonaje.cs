@@ -11,16 +11,24 @@ public class MovimientoPersonaje : NetworkBehaviour {
     public Vector2 bordeIzquierdaAbajo;
     public Vector2 bordeDerechaArriba;
 
+    private Animator anim;
+    private bool isMoving;
+    private bool isCharging;
+    private Vector2 lastMovement;
+    private Vector2 currentMovement;
+
     [SyncVar]
     public Vector2 posicionDestino;
     
     void Start()
     {
         posicionDestino = new Vector2(0, 0.5f);
+        anim = GetComponent<Animator>();
     }
 
 	void Update ()
     {
+        isMoving = false;
         if (isLocalPlayer){
             Vector2 distanciaDestino = posicionDestino - new Vector2(transform.position.x, transform.position.y);
         quieto = distanciaDestino.magnitude < 0.05f;
@@ -40,9 +48,22 @@ public class MovimientoPersonaje : NetworkBehaviour {
             //float xAxis = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
             //float yAxis = Input.GetAxis("Vertical") * speed * Time.deltaTime;
             //transform.Translate(xAxis, yAxis, 0);
+            if (xValido && xAxis != 0)
+            {
+                isMoving = true;
+                lastMovement = new Vector2(xAxis, 0f);
+            }
+            if (yValido & yAxis != 0)
+            {
+                isMoving = true;
+                lastMovement = new Vector2(0f, yAxis);
+            }
         }
 
         transform.position = new Vector3(Mathf.Lerp(transform.position.x, posicionDestino.x, speed), Mathf.Lerp(transform.position.y, posicionDestino.y, speed), transform.position.z);
         }
+        anim.SetFloat("MoveY", lastMovement.y);
+        anim.SetFloat("MoveX", lastMovement.x);
+        anim.SetBool("IsMoving", isMoving);
     }
 }
