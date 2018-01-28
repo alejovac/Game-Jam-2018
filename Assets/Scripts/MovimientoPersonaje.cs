@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MovimientoPersonaje : MonoBehaviour {
+public class MovimientoPersonaje : NetworkBehaviour {
     public float speed = 0.10f;
     public bool quieto;
     public Vector2 tamCelda;
@@ -10,6 +11,7 @@ public class MovimientoPersonaje : MonoBehaviour {
     public Vector2 bordeIzquierdaAbajo;
     public Vector2 bordeDerechaArriba;
 
+    [SyncVar]
     public Vector2 posicionDestino;
     
     void Start()
@@ -19,7 +21,8 @@ public class MovimientoPersonaje : MonoBehaviour {
 
 	void Update ()
     {
-        Vector2 distanciaDestino = posicionDestino - new Vector2(transform.position.x, transform.position.y);
+        if (isLocalPlayer){
+            Vector2 distanciaDestino = posicionDestino - new Vector2(transform.position.x, transform.position.y);
         quieto = distanciaDestino.magnitude < 0.05f;
         if (quieto)
         {
@@ -40,5 +43,6 @@ public class MovimientoPersonaje : MonoBehaviour {
         }
 
         transform.position = new Vector3(Mathf.Lerp(transform.position.x, posicionDestino.x, speed), Mathf.Lerp(transform.position.y, posicionDestino.y, speed), transform.position.z);
+        }
     }
 }
