@@ -36,6 +36,7 @@ public class GenerarBaseMapa : NetworkBehaviour {
             //GenerarCaminoPlano();
             LimpiarCaminoPlano();
             CalcularImagenes(imagenesServer);
+            MezclarTuberias(3);
 
             InstanciarPlano();
         }
@@ -126,10 +127,10 @@ public class GenerarBaseMapa : NetworkBehaviour {
             {
                 if (plano[xx, yy] == Celda.tubo)
                 {
-                    bool tuboIzq = (xx - 1) > 0;
-                    bool tuboAba = (yy - 1) > 0;
-                    bool tuboArr = (yy + 1) < alto - 1;
-                    bool tuboDer = (xx + 1) < ancho - 1;
+                    bool tuboIzq = (xx - 1) >= 0;
+                    bool tuboAba = (yy - 1) >= 0;
+                    bool tuboArr = (yy + 1) < alto;
+                    bool tuboDer = (xx + 1) < ancho;
 
                     if (tuboIzq) tuboIzq = plano[xx - 1, yy] == Celda.tubo;
                     if (tuboDer) tuboDer = plano[xx + 1, yy] == Celda.tubo;
@@ -153,9 +154,40 @@ public class GenerarBaseMapa : NetworkBehaviour {
 
                         case 1010: imagenes[xx, yy] = setImagenes.tuboTile_linea_hori; break;
                         case 0101: imagenes[xx, yy] = setImagenes.tuboTile_linea_vert; break;
+
+                        case 1000: imagenes[xx, yy] = setImagenes.tuboTile_terminal_Izq; break;
+                        case 0010: imagenes[xx, yy] = setImagenes.tuboTile_terminal_Der; break;
                     }
                 }
             }
+        }
+    }
+
+    private void MezclarTuberias(int cantidad)
+    {
+        int intentos = 100;
+        while (cantidad > 0 && intentos > 0)
+        {
+            int xx = rand.Next(1, ancho - 2);
+            int yy = rand.Next(0, alto  - 1);
+
+            if (plano[xx, yy] == Celda.tubo)
+            {
+                int sigX = rand.Next(1, ancho - 2);
+                int sigY = rand.Next(0, alto - 1);
+
+                if (plano[sigX, sigY] == Celda.vacia)
+                {
+                    plano[sigX, sigY] = Celda.tuboSuelto;
+                    imagenes[sigX, sigY] = imagenes[xx, yy];
+
+                    plano[xx, yy] = Celda.vacia;
+                    imagenes[xx, yy] = null;
+                    cantidad--;
+                }
+            }
+
+            intentos--;
         }
     }
 
@@ -165,10 +197,14 @@ public class GenerarBaseMapa : NetworkBehaviour {
         {
             for (int yy = 0; yy < alto; yy++)
             {
-                if (plano[xx, yy] == Celda.tubo)
+                if (plano[xx, yy] == Celda.tubo || plano[xx,yy] == Celda.tuboSuelto)
                 {
                     GameObject tuboIns = Instantiate(tubo, new Vector3(xoffset + xx, yoffset + yy, -.15f), Quaternion.identity);
+
                     tuboIns.GetComponentInChildren<SpriteRenderer>().sprite = imagenes[xx, yy];
+                    if (plano[xx, yy] == Celda.tubo)
+                        Destroy(tuboIns.GetComponent<PegarsePersonaje>());
+
                     NetworkServer.Spawn(tuboIns);
                 }
             }
@@ -177,4 +213,4 @@ public class GenerarBaseMapa : NetworkBehaviour {
     
 }
 
-public enum Celda { trampa, tubo, vacia }
+public enum Celda { trampa, tubo, tuboSuelto, vacia }

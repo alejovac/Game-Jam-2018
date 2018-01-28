@@ -17,4 +17,7 @@ public class SetImagenes : MonoBehaviour {
 
     public Sprite tuboTile_linea_hori;
     public Sprite tuboTile_linea_vert;
+
+    public Sprite tuboTile_terminal_Izq;
+    public Sprite tuboTile_terminal_Der;
 }
