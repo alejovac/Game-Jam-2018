@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{00E9B5EE-0F59-CE13-2A47-746694A2141C}</ProjectGuid>
+    <ProjectGuid>{AA32F7C8-F8CD-8D9F-6D41-0267B1851F1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -39,13 +39,15 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Programas/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Programas/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ColaScript.cs" />
+     <Compile Include="Assets\ElegirTilePiso.cs" />
      <Compile Include="Assets\Menu\Scripts\ActiveStateToggler.cs" />
      <Compile Include="Assets\Menu\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\Menu\Scripts\ChangeColor.cs" />
@@ -57,39 +59,41 @@
      <Compile Include="Assets\Menu\Scripts\ScrollDetailTexture.cs" />
      <Compile Include="Assets\Menu\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\Menu\Scripts\TiltWindow.cs" />
-     <Compile Include="Assets\PegarsePersonaje.cs" />
-     <Compile Include="Assets\ScriptTemp.cs" />
      <Compile Include="Assets\Scripts\ConeccionTubo.cs" />
+     <Compile Include="Assets\Scripts\DisconnectOnClick.cs" />
      <Compile Include="Assets\Scripts\DisconnectOnEscape.cs" />
      <Compile Include="Assets\Scripts\GenerarBaseMapa.cs" />
      <Compile Include="Assets\Scripts\HostOnClick.cs" />
      <Compile Include="Assets\Scripts\JoinOnClick.cs" />
      <Compile Include="Assets\Scripts\LoadSceneOnClick.cs" />
      <Compile Include="Assets\Scripts\MovimientoPersonaje.cs" />
+     <Compile Include="Assets\Scripts\PegarsePersonaje.cs" />
      <Compile Include="Assets\Scripts\QuitOnClick.cs" />
+     <Compile Include="Assets\Scripts\ScriptTemp.cs" />
      <Compile Include="Assets\Scripts\SelectOnInput.cs" />
+     <Compile Include="Assets\Scripts\SetImagenes.cs" />
      <Compile Include="Assets\Scripts\SetParameters.cs" />
      <Compile Include="Assets\Scripts\SetupLocalPlayer.cs" />
+     <Compile Include="Assets\Scripts\Sonidos.cs" />
      <Compile Include="Assets\Scripts\UpdateTiles.cs" />
-     <Compile Include="Assets\SetImagenes.cs" />
-     <Compile Include="Assets\Sonidos.cs" />
+     <Compile Include="Assets\SeleccionadorDeSonido.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.PlaymodeTestsRunner">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ <HintPath>C:/Programas/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
